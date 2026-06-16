@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZenFlow — Your Wellness Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <a href="/" class="logo">Zen<span>Flow</span></a>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/analyze">Re-analyse</a></li>
+    <li><a href="/reports">Reports</a></li>
+  </ul>
+</nav>
+
+<div class="dash-layout">
+
+  <!-- ── Sidebar ── -->
+  <aside class="dash-sidebar">
+    <div class="sidebar-label">Navigation</div>
+    <nav>
+      <a href="#overview" class="active">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline stroke="currentColor" stroke-width="2" points="9 22 9 12 15 12 15 22"/></svg>
+        Overview
+      </a>
+      <a href="#analytics">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18 20V10M12 20V4M6 20v-6"/></svg>
+        Analytics
+      </a>
+      <a href="#coach">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        AI Coach
+      </a>
+    </nav>
+
+    <div class="sidebar-label" style="margin-top: 32px;">Actions</div>
+    <nav>
+      <a href="/download_report">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        Download PDF
+      </a>
+      <a href="/analyze">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        New Analysis
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ── Main Content ── -->
+  <main class="dash-main">
+
+    <!-- Top Bar -->
+    <div class="dash-topbar" id="overview">
+      <div>
+        <h1>Wellness Dashboard</h1>
+        <p>Your personalised digital health report</p>
+      </div>
+      <span class="chip">Analysis Complete</span>
+    </div>
+
+    <!-- Download Banner -->
+    <div class="download-bar">
+      <div>
+        <strong>📄 Your Wellness Report is Ready</strong>
+        <p>Download your full PDF report to track progress or share with a professional.</p>
+      </div>
+      <a href="/download_report" class="download-btn">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        Download PDF
+      </a>
+    </div>
+
+    <!-- Metric Cards -->
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-label">Daily Screen Time</div>
+        <div class="metric-value">{{ daily_usage_hours }}<span style="font-size:18px;font-family:'Inter',sans-serif;font-weight:500;color:#64748b"> hrs</span></div>
+        <div class="metric-sub">Today's usage</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Wellness Score</div>
+        <div class="metric-value {% if wellness_score >= 70 %}good{% elif wellness_score >= 45 %}warn{% else %}bad{% endif %}">{{ wellness_score }}<span style="font-size:18px;font-family:'Inter',sans-serif;font-weight:500;color:#64748b">/100</span></div>
+        <div class="metric-sub">Higher is healthier</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Dependency Score</div>
+        <div class="metric-value {% if dependency_score <= 30 %}good{% elif dependency_score <= 55 %}warn{% else %}bad{% endif %}">{{ dependency_score }}<span style="font-size:18px;font-family:'Inter',sans-serif;font-weight:500;color:#64748b">%</span></div>
+        <div class="metric-sub">Lower is healthier</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">AI Prediction</div>
+        <div class="metric-value" style="font-size:20px;margin-top:6px;font-family:'Inter',sans-serif;">
+          <span class="prediction-badge {% if 'Healthy' in prediction|string %}healthy{% elif 'Moderate' in prediction|string %}moderate{% else %}dependent{% endif %}">
+            {{ prediction }}
+          </span>
+        </div>
+        <div class="metric-sub">Random Forest model output</div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="chart-grid" id="analytics">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Weekly Screen Time Trend</div>
+            <div class="panel-sub">Estimated daily usage this week (hrs)</div>
+          </div>
+        </div>
+        <canvas id="c1" height="160"></canvas>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">Wellness Breakdown</div>
+            <div class="panel-sub">Score vs dependency</div>
+          </div>
+        </div>
+        <canvas id="c2" height="160"></canvas>
+      </div>
+    </div>
+
+    <!-- AI Coach -->
+    <div class="coach-panel" id="coach">
+      <div class="coach-header">
+        <div class="coach-icon">🤖</div>
+        <div>
+          <div class="panel-title" style="font-size: 17px;">AI Coach Recommendations</div>
+          <div class="panel-sub">Personalised guidance based on your assessment</div>
+        </div>
+      </div>
+      <ul class="coach-list">
+        {% for tip in recommendations %}
+        <li class="coach-item">{{ tip }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+  </main>
+</div>
+
+<script>
+const mint  = '#10b981';
+const cyan  = '#06b6d4';
+const navy  = '#0a0f1e';
+const muted = '#94a3b8';
+
+Chart.defaults.font.family = "'Inter', sans-serif";
+Chart.defaults.color = muted;
+
+new Chart(document.getElementById('c1'), {
+  type: 'bar',
+  data: {
+    labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+    datasets: [{
+      label: 'Screen Time (hrs)',
+      data: [
+        ({{ daily_usage_hours }} * 1.05).toFixed(1),
+        ({{ daily_usage_hours }} * 0.9).toFixed(1),
+        ({{ daily_usage_hours }} * 1.1).toFixed(1),
+        ({{ daily_usage_hours }} * 0.85).toFixed(1),
+        {{ daily_usage_hours }},
+        ({{ daily_usage_hours }} * 1.2).toFixed(1),
+        ({{ daily_usage_hours }} * 0.75).toFixed(1)
+      ],
+      backgroundColor: mint + '33',
+      borderColor: mint,
+      borderWidth: 2,
+      borderRadius: 6,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { grid: { color: '#f1f5f9' }, beginAtZero: true },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+new Chart(document.getElementById('c2'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Wellness', 'Dependency'],
+    datasets: [{
+      data: [{{ wellness_score }}, {{ dependency_score }}],
+      backgroundColor: [mint, '#fee2e2'],
+      borderColor: ['white','white'],
+      borderWidth: 3,
+    }]
+  },
+  options: {
+    responsive: true,
+    cutout: '70%',
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true } }
+    }
+  }
+});
+</script>
+
+<footer>
+  <strong>ZenFlow</strong> &nbsp;·&nbsp; AI-Powered Digital Wellness &nbsp;·&nbsp; © 2026
+</footer>
+
+</body>
+</html>

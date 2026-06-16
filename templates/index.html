@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZenFlow — Digital Wellness Platform</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <a href="/" class="logo">Zen<span>Flow</span></a>
+  <ul>
+    <li><a href="/" class="active">Home</a></li>
+    <li><a href="/analyze">Analyze</a></li>
+    <li><a href="/reports">Reports</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/analyze" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">AI-Powered Wellness</div>
+    <h1>Understand your <em>digital habits</em> before they define you</h1>
+    <p>ZenFlow analyses your social media patterns using machine learning and delivers personalised wellness guidance in minutes.</p>
+    <div class="hero-actions">
+      <a href="/analyze" class="btn-primary">
+        <svg width="17" height="17" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        Start Free Analysis
+      </a>
+      <a href="/about" class="btn-ghost">Learn how it works →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Stats ── -->
+<div class="stats-strip">
+  <div class="stats-grid">
+    <div>
+      <div class="stat-num">6.5h</div>
+      <div class="stat-label">Average daily screen time, Gen Z</div>
+    </div>
+    <div>
+      <div class="stat-num">73%</div>
+      <div class="stat-label">Users who reduced usage after analysis</div>
+    </div>
+    <div>
+      <div class="stat-num">AI</div>
+      <div class="stat-label">Random Forest model, trained on real data</div>
+    </div>
+    <div>
+      <div class="stat-num">Free</div>
+      <div class="stat-label">Full analysis, no sign-up required</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Features ── -->
+<div class="section">
+  <div class="section-label">What ZenFlow does</div>
+  <h2 class="section-heading">Everything you need to reclaim your attention</h2>
+  <p class="section-sub">From raw screen-time data to clear, actionable guidance — in one seamless flow.</p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <h3>Screen Time Analytics</h3>
+      <p>Visualise your daily usage, session lengths, and platform breakdown so you can see exactly where your time goes.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🤖</div>
+      <h3>AI Dependency Coach</h3>
+      <p>Our Random Forest model predicts your dependency risk and generates personalised recommendations based on your profile.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">😴</div>
+      <h3>Sleep Impact Score</h3>
+      <p>Understand how late-night scrolling is affecting your sleep quality — and get targeted advice to fix it.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📄</div>
+      <h3>Downloadable Report</h3>
+      <p>Get a full PDF wellness report to track your progress over time or share with a counsellor or GP.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🧠</div>
+      <h3>Mental Wellness Index</h3>
+      <p>Answer three simple questions about stress, comparison, and anxiety to get your Mental Wellness Index score.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔒</div>
+      <h3>Private by Design</h3>
+      <p>Nothing is stored. Your answers are used only to run the analysis — no accounts, no tracking.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── CTA Strip ── -->
+<div style="background: linear-gradient(135deg, #10b981, #06b6d4); padding: 72px 48px; text-align: center;">
+  <h2 style="font-family: 'DM Serif Display', serif; font-size: clamp(26px,4vw,40px); color: white; margin-bottom: 14px;">Ready to find out where you stand?</h2>
+  <p style="font-size: 16px; color: rgba(255,255,255,.8); margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto;">The assessment takes under 3 minutes. You'll walk away with a wellness score, dependency prediction, and personalised tips.</p>
+  <a href="/analyze" class="btn-primary" style="background: white; color: #059669; box-shadow: 0 8px 32px rgba(0,0,0,.2);">Start your free assessment →</a>
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <strong>ZenFlow</strong> &nbsp;·&nbsp; AI-Powered Digital Wellness &nbsp;·&nbsp; © 2026
+</footer>
+
+</body>
+</html>

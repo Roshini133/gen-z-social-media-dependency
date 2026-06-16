@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZenFlow — Reports</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">Zen<span>Flow</span></a>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/analyze">Analyze</a></li>
+    <li><a href="/reports" class="active">Reports</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <h1>Reports Centre</h1>
+  <p>Download your wellness reports to track progress over time.</p>
+</div>
+
+<div class="section">
+  <div class="section-label">Available Reports</div>
+  <h2 class="section-heading">Your wellness history at a glance</h2>
+  <p class="section-sub">Run an analysis first to unlock personalised downloadable reports.</p>
+
+  <div class="report-cards">
+    <div class="report-card">
+      <div class="report-icon">📅</div>
+      <h3>Weekly Wellness Report</h3>
+      <p>A 7-day summary of your screen-time patterns, wellness score trends, and AI coach recommendations for the week.</p>
+      <a href="/download_report" class="report-dl-btn">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        Download PDF
+      </a>
+    </div>
+    <div class="report-card">
+      <div class="report-icon">📆</div>
+      <h3>Monthly Progress Report</h3>
+      <p>A 30-day overview showing changes in your dependency score, mental wellness index, and sleep impact metrics.</p>
+      <a href="/download_report" class="report-dl-btn">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        Download PDF
+      </a>
+    </div>
+    <div class="report-card">
+      <div class="report-icon">🧾</div>
+      <h3>Latest Assessment Report</h3>
+      <p>The full report from your most recent analysis — includes prediction, scores, and all personalised recommendations.</p>
+      <a href="/download_report" class="report-dl-btn">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        Download PDF
+      </a>
+    </div>
+  </div>
+
+  <div style="margin-top: 60px; padding: 40px; background: linear-gradient(135deg, #f0fdf4, #ecfeff); border: 1px solid rgba(16,185,129,.2); border-radius: 22px; text-align: center;">
+    <h3 style="font-size: 22px; margin-bottom: 10px;">Haven't run an analysis yet?</h3>
+    <p style="color: #64748b; margin-bottom: 24px; max-width: 480px; margin-left: auto; margin-right: auto;">Complete the 3-minute assessment to generate your personalised wellness report.</p>
+    <a href="/analyze" class="btn-primary">Start Free Analysis</a>
+  </div>
+</div>
+
+<footer>
+  <strong>ZenFlow</strong> &nbsp;·&nbsp; AI-Powered Digital Wellness &nbsp;·&nbsp; © 2026
+</footer>
+
+</body>
+</html>
